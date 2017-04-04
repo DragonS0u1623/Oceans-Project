@@ -34,4 +34,5 @@ public class Main extends Application {
         logManager.getLogger("").removerHandler(rootHandler);
         logManager.getLogger("").addHandler(baseFileHandler);
     }
-    catch (SecurityException 
+    catch (SecurityException | IOException exception) {
+        System.err.println("Error initiating logger: " + exception.getMessage());
