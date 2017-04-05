@@ -9,9 +9,11 @@ import javafx.scene.control.*;
 import javafx.geometry.*;
 
 public class Main extends Application {
-
+    
+    Label response;
+    
     public static void main(String[] args) {
-        Application.launch();
+        launch(args);
     }
 
     @Override
@@ -20,11 +22,27 @@ public class Main extends Application {
         myStage.setTitle("Oceans Project");
         
         FlowPane rootNode = new FlowPane();
+        
+        rootNode.setAlignment(Pos.LEFT);
 
         Scene myScene = new Scene(rootNode, 300, 200);
 
         myStage.setScene(myScene);
-        Button btnA = new Button("
+        
+        response = new Label("Seaweed in Food.");
+        
+        //Button Functions
+        Button btnA = new Button("Uses of Seaweed in Food");
+        Button btnB = new Button("Why Use Seaweed?");
+        Button btnC = new Button("Economic Advantages");
+        Button btnD = new Button("Types of Seaweed Used");
+        Button btnE = new Button("How it is Supplied");
+        
+        //Responses
+        btnA.setOnAction(new EventHandler<ActionEvent>() {
+          public void handle (ActionEvent ae) {
+            response.setText("Seaweed is used as a supplementary ingredient in salads, and 
+        
         myStage.setFullScreen(true);
         myStage.show();
     }
