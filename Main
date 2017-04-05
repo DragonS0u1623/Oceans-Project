@@ -46,7 +46,9 @@ public class Main extends Application {
         }
         });
         
-        btn
+        btnA.setOnAction(new EventHandler<ActionEvent>() {
+          public void handle (ActionEvent ae) {
+            response.setText("Seaweed 
         myStage.setFullScreen(true);
         myStage.show();
     }
