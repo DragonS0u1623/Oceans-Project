@@ -1,38 +1,39 @@
-package com.Jordan.Main;
+package com.Jordan.eventmanager;
 
-import com.sun.javafx.application.*;
-import javafx.application.*;
-import javafx.stage.*;
+import com.Jordan.eventmanager.application.guice.EventManagerModule;
+import com.Jordan.eventmanager.view.overview.EventOverviewView;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.SceneBuilder;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
-  private static final String LOGGING_PROPERTIES = "resources/config/logging.properties";
-  private static final String LOG_FILE = "Oceans-Project-Log.txt";
-  static final Logger LOG = LoggerFactory.getLogger(getClass().getName());
-  
-  public static void main(String[] args) {
-    initializeLogger();
-    LauncherImpl.launchApplication(OceansProjectApplication.class, MainPreloader.class, args);
-  }
-  
-  private static void initializeLogger() {
-  Handler baseFileHander;
-  LogManager logManager = Logmanager.getLogManager();
-  java.util.logging.Logger logger = logManager.getLogger("");
-  Handler rootHandler = logger.getHandlers()[0];
-  
-    try {
-        logManager.readConfiguration(new FileInputStream(LOGGING_PROPERTIES));
-        baseFileHandler = new FileHandler(LOG_FILE);
-        baseFileHandler.setFormatter(new SimpleFormatter() {
-          
-            @Override
-            public String format(LogRecord record) {
-                return logTextString(record);
-            }
-        });
-        logManager.getLogger("").removerHandler(rootHandler);
-        logManager.getLogger("").addHandler(baseFileHandler);
+    private Pane eventOverviewPane;
+
+    public static void main(String[] args) {
+        Application.launch();
     }
-    catch (SecurityException | IOException exception) {
-        System.err.println("Error initiating logger: " + exception.getMessage());
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Injector injector = Guice.createInjector(new EventManagerModule());
+        EventOverviewView eventOverviewBuilder = injector.getInstance(EventOverviewView.class);
+
+        Scene scene = SceneBuilder.create()
+                .root(
+                    eventOverviewPane = eventOverviewBuilder.getView()
+                ).build();
+        scene.getStylesheets().add(Main.class.getResource("/EventManager.css").toExternalForm());
+
+        eventOverviewPane.prefWidthProperty().bind(scene.widthProperty());
+        eventOverviewPane.prefHeightProperty().bind(scene.heightProperty());
+
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();
+    }
+}
