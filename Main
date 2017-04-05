@@ -41,8 +41,12 @@ public class Main extends Application {
         //Responses
         btnA.setOnAction(new EventHandler<ActionEvent>() {
           public void handle (ActionEvent ae) {
-            response.setText("Seaweed is used as a supplementary ingredient in salads, and 
+            response.setText("Seaweed is used as a supplementary ingredient in salads, 
+            and as one of the main ingredients in Sushi.");
+        }
+        });
         
+        btn
         myStage.setFullScreen(true);
         myStage.show();
     }
