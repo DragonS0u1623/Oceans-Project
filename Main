@@ -1,14 +1,12 @@
 package com.Jordan.eventmanager;
 
-import com.Jordan.eventmanager.application.guice.EventManagerModule;
-import com.Jordan.eventmanager.view.overview.EventOverviewView;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.SceneBuilder;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
+import javafx.geometry.*;
 
 public class Main extends Application {
 
@@ -19,21 +17,17 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Injector injector = Guice.createInjector(new EventManagerModule());
-        EventOverviewView eventOverviewBuilder = injector.getInstance(EventOverviewView.class);
+    public void start(Stage myStage) {
+        
+        myStage.setTitle("Oceans Project");
+        
+        FlowPane rootNode = new FlowPane();
 
-        Scene scene = SceneBuilder.create()
-                .root(
-                    eventOverviewPane = eventOverviewBuilder.getView()
-                ).build();
-        scene.getStylesheets().add(Main.class.getResource("/EventManager.css").toExternalForm());
+        Scene myScene = new Scene(rootNode, 300, 200);
 
-        eventOverviewPane.prefWidthProperty().bind(scene.widthProperty());
-        eventOverviewPane.prefHeightProperty().bind(scene.heightProperty());
-
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.show();
+        myStage.setScene(myScene);
+        Button btnA = new Button("
+        myStage.setFullScreen(true);
+        myStage.show();
     }
 }
