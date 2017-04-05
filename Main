@@ -10,8 +10,6 @@ import javafx.geometry.*;
 
 public class Main extends Application {
 
-    private Pane eventOverviewPane;
-
     public static void main(String[] args) {
         Application.launch();
     }
