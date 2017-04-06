@@ -32,14 +32,21 @@ public class Main extends Application {
         response = new Label("Seaweed in Food.");
         
         //Button Functions
-        Button btnA = new Button("Uses of Seaweed in Food");
-        Button btnB = new Button("Why Use Seaweed?");
-        Button btnC = new Button("Economic Advantages");
-        Button btnD = new Button("Types of Seaweed Used");
-        Button btnE = new Button("How it is Supplied");
+        Button btnA = new Button();
+        btnA.setText("Uses of Seaweed in Food");
+        Button btnB = new Button();
+        btnB.setText("");
+        Button btnC = new Button();
+        btnC.setText("
+        Button btnD = new Button();
+        btnD.setText("
+        Button btnE = new Button();
+        btnE.setText("
         
         //Responses
         btnA.setOnAction(new EventHandler<ActionEvent>() {
+        
+        @Override
           public void handle (ActionEvent ae) {
             response.setText("Seaweed is used as a supplementary ingredient in salads, 
             and as one of the main ingredients in Sushi.");
@@ -47,6 +54,8 @@ public class Main extends Application {
         });
         
         btnA.setOnAction(new EventHandler<ActionEvent>() {
+        
+        @Override
           public void handle (ActionEvent ae) {
             response.setText("Seaweed 
         myStage.setFullScreen(true);
